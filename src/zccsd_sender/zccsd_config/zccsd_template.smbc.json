@@ -1,0 +1,58 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Maintain Templates for Tenant Copy",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "serviceConfiguration": {
+    "serviceBinding": "ZCCSD_UI_TEMPLATE_O4",
+    "serviceName": "ZCCSD_UI_TEMPLATE_O4",
+    "serviceVersion": "0001",
+    "rootEntitySet": "CopyTemplateAll",
+    "name": "Templates for Tenant Copy",
+    "transportObject": "ZCCSD_TEMPLATET",
+    "configurationGroup": "",
+    "skipRootEntity": true
+  },
+  "appConfiguration": {
+    "listReport": {},
+    "objectPages": [
+      {
+        "entitySet": "CopyTemplateAll",
+        "variantManagement": "control"
+      }
+    ],
+    "tableSettings": [
+      {
+        "entitySet": "CopyTemplate",
+        "tableType": "gridTable",
+        "selectionMode": "single",
+        "selectAll": true,
+        "rowCountMode": "auto",
+        "frozenColumnCount": 1,
+        "creationModeName": "inlineCreationRows",
+        "createAtEnd": true,
+        "widthIncludingColumnHeader": true
+      },
+      {
+        "entitySet": "CopyTemplateTField",
+        "tableType": "gridTable",
+        "selectAll": true,
+        "frozenColumnCount": 1,
+        "creationModeName": "inlineCreationRows",
+        "createAtEnd": true,
+        "widthIncludingColumnHeader": true
+      },
+      {
+        "entitySet": "CopyTemplateTable",
+        "tableType": "gridTable",
+        "selectAll": true,
+        "frozenColumnCount": 1,
+        "creationModeName": "inlineCreationRows",
+        "createAtEnd": true,
+        "widthIncludingColumnHeader": true
+      }
+    ]
+  }
+}

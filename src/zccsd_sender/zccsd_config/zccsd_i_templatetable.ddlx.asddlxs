@@ -1,0 +1,68 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Copy Template Table', 
+    typeNamePlural: 'Copy Template Tables', 
+    title: {
+      type: #STANDARD, 
+      value: 'TemplateItemNo'
+    }
+  }
+}
+annotate view ZCCSD_I_TemplateTable with
+{
+  @UI.identification: [ {
+    position: 1 , 
+    label: 'TemplateItemNo'
+  } ]
+  @UI.lineItem: [ {
+    position: 1 , 
+    label: 'TemplateItemNo'
+  } ]
+  @UI.facet: [ {
+    id: 'CopyTemplateTable', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Copy Template Table', 
+    position: 1 
+  } ]
+  TemplateItemNo;
+  
+  @UI.identification: [ {
+    position: 2 
+  } ]
+  @UI.lineItem: [ {
+    position: 2 
+  } ]
+  FilterAttrName;
+  
+  @UI.identification: [ {
+    position: 3 , 
+    label: 'FilterOption'
+  } ]
+  @UI.lineItem: [ {
+    position: 3 , 
+    label: 'FilterOption'
+  } ]
+  FilterOption;
+  
+  @UI.identification: [ {
+    position: 4 , 
+    label: 'FilterLow'
+  } ]
+  @UI.lineItem: [ {
+    position: 4 , 
+    label: 'FilterLow'
+  } ]
+  FilterLow;
+  
+  @UI.identification: [ {
+    position: 5 , 
+    label: 'FilterHigh'
+  } ]
+  @UI.lineItem: [ {
+    position: 5 , 
+    label: 'FilterHigh'
+  } ]
+  FilterHigh;
+}

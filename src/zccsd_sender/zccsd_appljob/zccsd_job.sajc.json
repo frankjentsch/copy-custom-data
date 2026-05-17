@@ -1,0 +1,31 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Copy Custom Data",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "className": "ZCL_CCSD_JOB"
+  },
+  "parameters": [
+    {
+      "name": "TEMPLATE_NAME",
+      "title": "Template for Tenant Copy",
+      "mandatory": true,
+      "valueHelp": "ZCCSD_TEMPLATE_VH",
+      "valueHelpType": "cdsView",
+      "singleValues": true
+    },
+    {
+      "name": "COMM_ARRANGEMENT_ID",
+      "title": "Comm. Arrangement for Target Tenant",
+      "mandatory": true
+    },
+    {
+      "name": "SIMULATE_ONLY",
+      "title": "Simulate Only",
+      "screenElement": "checkbox"
+    }
+  ]
+}

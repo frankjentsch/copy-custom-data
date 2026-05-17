@@ -1,0 +1,56 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Copy Template', 
+    typeNamePlural: 'Copy Templates', 
+    title: {
+      type: #STANDARD, 
+      value: 'TemplateName'
+    }
+  }
+}
+annotate view ZCCSD_I_Template with
+{
+  @UI.identification: [ {
+    position: 1 
+  } ]
+  @UI.lineItem: [ {
+    position: 1 
+  }, 
+  {
+    type: #FOR_ACTION, 
+    dataAction: 'Copy', 
+    label: 'Copy Selected Entry', 
+    invocationGrouping: #CHANGE_SET
+  } ]
+  @UI.facet: [ {
+    id: 'CopyTemplate', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Copy Template', 
+    position: 1 
+  }, 
+  {
+    id: 'CopyTemplateTField', 
+    type: #LINEITEM_REFERENCE, 
+    label: 'Copy Template Table Fields', 
+    position: 2 , 
+    targetElement: '_CopyTemplateTField'
+  }, 
+  {
+    id: 'CopyTemplateTable', 
+    type: #LINEITEM_REFERENCE, 
+    label: 'Copy Template Tables', 
+    position: 3 , 
+    targetElement: '_CopyTemplateTable'
+  } ]
+  TemplateName;
+  
+  @UI.identification: [ {
+    position: 2 
+  } ]
+  @UI.lineItem: [ {
+    position: 2 
+  } ]
+  TemplateDesc;
+}

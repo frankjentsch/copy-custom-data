@@ -1,0 +1,5 @@
+@MappingRole: true
+define role ZCCSD_I_TemplateTableField {
+  grant select on ZCCSD_I_TemplateTableField
+  where INHERITING CONDITIONS FROM ENTITY ZCCSD_I_Template;
+}

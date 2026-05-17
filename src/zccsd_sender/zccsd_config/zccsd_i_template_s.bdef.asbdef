@@ -1,0 +1,165 @@
+managed with additional save implementation in class ZBP_CCSD_I_TEMPLATE_S unique;
+strict ( 2 );
+with draft;
+define behavior for ZCCSD_I_Template_S alias CopyTemplateAll
+draft table ZCCSD_TEMPL_S_D
+with unmanaged save
+lock master total etag LastChangedAtMax
+authorization master( global )
+{
+  field ( readonly )
+   SingletonID;
+
+  field ( notrigger )
+   SingletonID,
+   LastChangedAtMax;
+
+
+  update;
+  internal create;
+  internal delete;
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare {
+    validation CopyTemplate ~ ValidateDataConsistency;
+    validation CopyTemplateTField ~ ValidateDataConsistency;
+    validation CopyTemplateTable ~ ValidateDataConsistency;
+  }
+
+  association _CopyTemplate { create ( features : instance ); with draft; }
+
+}
+
+define behavior for ZCCSD_I_Template alias CopyTemplate ##UNMAPPED_FIELD
+persistent table ZCCSD_TEMPLATE
+draft table ZCCSD_TEMPL_D
+lock dependent by _CopyTemplateAll
+authorization dependent by _CopyTemplateAll
+{
+  field ( mandatory : create )
+   TemplateName;
+
+  field ( readonly )
+   SingletonID;
+
+  field ( readonly : update )
+   TemplateName;
+
+  field ( notrigger )
+   SingletonID;
+
+
+  update( features : global );
+  delete( features : global );
+
+  factory action ( features : instance ) Copy parameter ZCCSD_D_CopyTemplatePar [1];
+
+  mapping for ZCCSD_TEMPLATE
+  {
+    TemplateName = TEMPLATE_NAME;
+    TemplateDesc = TEMPLATE_DESC;
+  }
+
+  association _CopyTemplateAll { with draft; }
+  association _CopyTemplateTField { create ( features : global ); with draft; }
+  association _CopyTemplateTable { create ( features : global ); with draft; }
+
+  validation ValidateDataConsistency on save
+  {
+    create;
+    update;
+  }
+
+}
+
+define behavior for ZCCSD_I_TemplateTableField alias CopyTemplateTField ##UNMAPPED_FIELD
+persistent table ZCCSD_TEMPLATE_F
+draft table ZCCSD_TEMPL_F_D
+lock dependent by _CopyTemplateAll
+authorization dependent by _CopyTemplateAll
+{
+  field ( mandatory : create )
+   TemplateItemNo;
+
+  field ( readonly )
+   SingletonID,
+   TemplateName;
+
+  field ( readonly : update )
+   TemplateItemNo;
+
+  field ( notrigger )
+   SingletonID;
+
+
+  update( features : global );
+  delete( features : global );
+
+  mapping for ZCCSD_TEMPLATE_F
+  {
+    TemplateName = TEMPLATE_NAME;
+    TemplateItemNo = TEMPLATE_ITEM_NO;
+    TableName = TABLE_NAME;
+    FieldName = FIELD_NAME;
+    FilterOption = FILTER_OPTION;
+    FilterLow = FILTER_LOW;
+    FilterHigh = FILTER_HIGH;
+  }
+
+  association _CopyTemplateAll { with draft; }
+  association _CopyTemplate { with draft; }
+
+  validation ValidateDataConsistency on save
+  {
+    create;
+    update;
+  }
+
+}
+
+define behavior for ZCCSD_I_TemplateTable alias CopyTemplateTable ##UNMAPPED_FIELD
+persistent table ZCCSD_TEMPLATE_T
+draft table ZCCSD_TEMPL_T_D
+lock dependent by _CopyTemplateAll
+authorization dependent by _CopyTemplateAll
+{
+  field ( mandatory : create )
+   TemplateItemNo;
+
+  field ( readonly )
+   SingletonID,
+   TemplateName;
+
+  field ( readonly : update )
+   TemplateItemNo;
+
+  field ( notrigger )
+   SingletonID;
+
+
+  update( features : global );
+  delete( features : global );
+
+  mapping for ZCCSD_TEMPLATE_T
+  {
+    TemplateName = TEMPLATE_NAME;
+    TemplateItemNo = TEMPLATE_ITEM_NO;
+    FilterAttrName = FILTER_ATTR_NAME;
+    FilterOption = FILTER_OPTION;
+    FilterLow = FILTER_LOW;
+    FilterHigh = FILTER_HIGH;
+  }
+
+  association _CopyTemplateAll { with draft; }
+  association _CopyTemplate { with draft; }
+
+  validation ValidateDataConsistency on save
+  {
+    create;
+    update;
+  }
+
+}

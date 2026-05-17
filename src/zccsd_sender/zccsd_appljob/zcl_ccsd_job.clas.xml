@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_CCSD_JOB</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Copy Custom Data Job</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_CCSD_JOB</CLSNAME>
+     <CMPNAME>COMM_ARRANGEMENT_ID</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Comm. Arrangement for Target Tenant</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_CCSD_JOB</CLSNAME>
+     <CMPNAME>SIMULATE_ONLY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Simulate Only</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_CCSD_JOB</CLSNAME>
+     <CMPNAME>TEMPLATE_NAME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Copy Template</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

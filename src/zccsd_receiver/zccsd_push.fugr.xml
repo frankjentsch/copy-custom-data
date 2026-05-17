@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <AREAT>Push Data to Target Tenant</AREAT>
+   <INCLUDES>
+    <SOBJ_NAME>LZCCSD_PUSHTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZCCSD_PUSH</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>Z_CCSD_PUSH_TAB_DATA</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Push Data of a Single DB Table into Target Tenant</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>TABNAME</PARAMETER>
+       <TYP>TABNAME</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>PAYLOAD</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSTRING</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>OPERATION</PARAMETER>
+       <DEFAULT>&apos;I&apos;</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>ZCCSD_PUSH_OPERATON</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>ERROR_CODE</PARAMETER>
+       <TYP>I</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>ERROR_MESSAGE</PARAMETER>
+       <TYP>BAPIRET2</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>TABNAME</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>PAYLOAD</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>OPERATION</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ERROR_CODE</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ERROR_MESSAGE</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+   </FUNCTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

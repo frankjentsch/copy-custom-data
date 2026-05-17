@@ -1,0 +1,7 @@
+@ObjectModel.leadingEntity.name: 'ZCCSD_I_Template_S'
+define service ZCCSD_UI_TEMPLATE {
+  expose ZCCSD_I_TEMPLATE_S as CopyTemplateAll;
+  expose ZCCSD_I_TEMPLATE as CopyTemplate;
+  expose ZCCSD_I_TEMPLATETABLEFIELD as CopyTemplateTField;
+  expose ZCCSD_I_TEMPLATETABLE as CopyTemplateTable;
+}

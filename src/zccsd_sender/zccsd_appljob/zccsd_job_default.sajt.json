@@ -1,0 +1,27 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Copy Custom Data (default)",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZCCSD_JOB"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "COMM_ARRANGEMENT_ID",
+        "value": ""
+      },
+      {
+        "name": "SIMULATE_ONLY",
+        "value": "X"
+      },
+      {
+        "name": "TEMPLATE_NAME",
+        "value": ""
+      }
+    ]
+  }
+}

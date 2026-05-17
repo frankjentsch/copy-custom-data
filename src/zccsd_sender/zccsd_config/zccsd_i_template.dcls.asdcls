@@ -1,0 +1,5 @@
+@MappingRole: true
+define role ZCCSD_I_Template {
+  grant select on ZCCSD_I_Template
+  where ( ) = ASPECT pfcg_auth ( 'S_TABU_NAM', ACTVT = '03', TABLE = 'ZCCSD_I_TEMPLATE' );
+}
