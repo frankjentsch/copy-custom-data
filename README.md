@@ -93,6 +93,9 @@ A Business Configuration object `ZCCSD_TEMPLATE` based on OData V4 Service Bindi
 8. Back in the app *Communication Arrangements*, press the Save button.
 9. For later reference in the application job to trigger the tenant copy, you need the Communication Arrangement ID `TENANT_COPY_TST`.
 
-## How to obtain support
-This project is provided "as-is": there is no guarantee that raised issues will be answered or addressed in future releases.
+### Visibility of the Database Tables to be Copied
 
+The affected database tables defined in the templates need to be accessable for the utility. As explained in the section 'Download' above, the usage of a separate new software component `ZCCSD` is recommend. Following this guidance lead to the situation, that the database tables to be copied are located in another custom software component. To make these tables accessable for the utility, you need to expose them. You could either C1-release each relevant table in ADT via view *Properties*, tab *API State* or - that's the recommendation - you could create a +Software Component Relation* object per custom software component having database tables. These ADT objects need to point to the software component `ZCCSD`. With +Software Component Relations*, the utility can access the database tables. The relation objects need to exist in both systems, of the source and of the target tenant. 
+
+## How to obtain support
+This project is provided "as-is": there is no guarantee that raised issues will be answered or addressed in future releases. 
