@@ -65,19 +65,33 @@ Class `ZCL_CCSD_SETUP_DEMO_DATA` is a console app which can be used to fill test
 
 A tenplate defines a collection of custom database tables which will be pushed as one action later via an application job. In our example, we define one template for the two example tables. The same database table can be used in different templates. The template name and description need to be maintained in configuration table `ZCCSD_TEMPLATE`. The optional table filter by software componentes and table names need to be maintained in configuration table `ZCCSD_TEMPLATE_T`. The optional data filter per table field need to be maintained in configuration table `ZCCSD_TEMPLATE_F`. You can use class `ZCL_CCSD_SETUP_DEMO_CONFIG` to create these configuration entries for the demo tables. 
 
-Data preview of `ZCCSD_TEMPLATE`:
+### Business Configuration App to Configure the Templates
 
-![](png/01%20-%20ZPUSH_TAB_GRP%20Data%20Preview.png)
+A Business Configuration object `ZCCSD_TEMPLATE` based on OData V4 Service Binding `ZCCSD_UI_TEMPLATE_O4` is provided to define the templates for tenant copy.
 
-Data preview of `ZCCSD_TEMPLATE_T`:
+### Required Steps for Integration Setup per Target Tenant
 
-![](png/02%20-%20ZPUSH_TAB_GRP_I%20Data%20Preview.png)
+1. As an administrator (having the business role `SAP_BR_ADMINISTRATOR`) open the SAP Fiori Launchpad of the system and start the app *Display Communication Scenarios*.
+2. Navigate to the details of the communication scenario with ID `ZCCSD_RECEIVE_TAB_DATA`.
+3. Press the button *Create Communication Arrangement*. In the subsequent popup, you can use the default Arrangement Name and press *Create*.  
+4. The app *Communication Arrangements* opens. As a first step, create a new Communication System and press the button *New* next to the respective input field. Enter `TENANT_COPY_TARGET` as System ID and System Name and press *Create*. 
+5. Select the check box *Inbound Only*. Navigate to the section *Users for Inbound Communication* and create a communication user by pressing the *+ (plus)* button.
+6. Press the button *New User* in the subsequent popup. Enter the user name, for example, `TENANT_COPY`, and specify a description. Depending on the selected authentication method, add the required additional information. Press the *Create* button to finally save the new user. The communication user will be used later to call the RFC.
+7. Save the communication system. 
+8. Back in the app *Communication Arrangements*, press the *Save* button to finally get the target endpoint setup for the tenant copy.
+9. For later reference in the source communication system for the tenant copy, you need the *API-URL* and the user information. 
 
-### SAP Fiori App to Configure the Templates
+### Required Steps for Integration Setup per Source Tenant
 
-A Business Configuration object based on OData V4 Service Binding `ZCCSD_UI_TEMPLATE_O4` is provided to define the templates for tenant copy.
-
-![](png/03%20-%20Fiori%20App.png)
+1. As an administrator (having the business role `SAP_BR_ADMINISTRATOR`) open the SAP Fiori Launchpad of the system and start the app *Display Communication Scenarios*.
+2. Navigate to the details of the communication scenario with ID `ZCCSD_PUSH_TAB_DATA`.
+3. Press the button *Create Communication Arrangement*. In the subsequent popup, specify a meaningful *Arrangement Name* indicating the target tenant, for example, `TENANT_COPY_TST` for a test system with system ID `TST`, and press *Create*.  
+4. The app *Communication Arrangements* opens. As a first step, create a new Communication System and press the button *New* next to the respective input field. Enter a meaningful name indicating the target tenant, for example, `TENANT_COPY_TST`, as System ID and System Name and press *Create*. 
+5. Navigate to the section *Users for Outbound Communication* and define the user by pressing the *+ (plus)* button. Add the user information of the previously created communication user of the target tenant.
+6. Copy the *API-URL* of the target tenant into the field *Host Name*, but remove the protocol information https://
+7. Save the communication system. 
+8. Back in the app *Communication Arrangements*, press the Save button.
+9. For later reference in the application job to trigger the tenant copy, you need the Communication Arrangement ID `TENANT_COPY_TST`.
 
 ## How to obtain support
 This project is provided "as-is": there is no guarantee that raised issues will be answered or addressed in future releases.
