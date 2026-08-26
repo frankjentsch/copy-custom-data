@@ -1,7 +1,7 @@
 CLASS zcl_ccsd_push_helper DEFINITION
   PUBLIC
   FINAL
-  CREATE PRIVATE .
+  CREATE PRIVATE.
 
   PUBLIC SECTION.
     CLASS-DATA singleton TYPE REF TO zcl_ccsd_push_helper.

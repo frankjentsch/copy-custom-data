@@ -97,13 +97,60 @@ CLASS LHC_COPYTEMPLATE IMPLEMENTATION.
     result             = REF #( result )
     reported           = REF #( reported ) ).
   ENDMETHOD.
-  METHOD COPY.
-  mbc_cp_api=>rap_bc_api( )->copy_by_association(
-    entity   = co_entity
-    keys     = REF #( keys )
-    mapped   = REF #( mapped )
-    failed   = REF #( failed )
-    reported = REF #( reported ) ).
+  METHOD copy.
+    mbc_cp_api=>rap_bc_api( )->copy_by_association(
+      entity   = co_entity
+      keys     = REF #( keys )
+      mapped   = REF #( mapped )
+      failed   = REF #( failed )
+      reported = REF #( reported ) ).
+    DATA new_template_f TYPE TABLE FOR CREATE zccsd_i_template\_CopyTemplateTField.
+    READ ENTITIES OF zccsd_i_template_s IN LOCAL MODE
+    ENTITY CopyTemplate BY \_CopyTemplateTField
+    ALL FIELDS WITH CORRESPONDING #( keys )
+    RESULT DATA(template_fields).
+    LOOP AT template_fields ASSIGNING FIELD-SYMBOL(<template_field>).
+      READ TABLE keys WITH KEY entity COMPONENTS %key-TemplateName = <template_field>-%key-TemplateName ASSIGNING FIELD-SYMBOL(<parent>).
+      APPEND VALUE #(
+        %is_draft = <parent>-%is_draft
+        templatename = <parent>-%param-TemplateName
+        %target = VALUE #( (
+           %is_draft = <parent>-%is_draft
+           %cid = |CID_F#{ <template_field>-TemplateName }{ <template_field>-TemplateItemNo }|
+           %data = CORRESPONDING #( <template_field> )
+        ) )
+      ) TO new_template_f ASSIGNING FIELD-SYMBOL(<new_template_f>).
+      <new_template_f>-%target[ 1 ]-%key-TemplateName = <parent>-%param-TemplateName.
+    ENDLOOP.
+    IF new_template_f IS NOT INITIAL.
+      MODIFY ENTITIES OF zccsd_i_template_s IN LOCAL MODE
+      ENTITY CopyTemplate CREATE BY \_CopyTemplateTField
+      FIELDS ( TemplateName TemplateItemNo TableName FieldName FilterHigh FilterLow FilterOption ) WITH new_template_f.
+    ENDIF.
+
+    DATA new_template_t TYPE TABLE FOR CREATE zccsd_i_template\_CopyTemplateTable.
+    READ ENTITIES OF zccsd_i_template_s IN LOCAL MODE
+    ENTITY CopyTemplate BY \_CopyTemplateTable
+    ALL FIELDS WITH CORRESPONDING #( keys )
+    RESULT DATA(template_table).
+    LOOP AT template_table ASSIGNING FIELD-SYMBOL(<template_table>).
+      READ TABLE keys WITH KEY entity COMPONENTS %key-TemplateName = <template_table>-%key-TemplateName ASSIGNING <parent>.
+      APPEND VALUE #(
+        %is_draft = <parent>-%is_draft
+        templatename = <parent>-%param-TemplateName
+        %target = VALUE #( (
+           %is_draft = <parent>-%is_draft
+           %cid = |CID_T#{ <template_table>-TemplateName }{ <template_table>-TemplateItemNo }|
+           %data = CORRESPONDING #( <template_table> )
+        ) )
+      ) TO new_template_t ASSIGNING FIELD-SYMBOL(<new_template_t>).
+      <new_template_t>-%target[ 1 ]-%key-TemplateName = <parent>-%param-TemplateName.
+    ENDLOOP.
+    IF new_template_t IS NOT INITIAL.
+      MODIFY ENTITIES OF zccsd_i_template_s IN LOCAL MODE
+      ENTITY CopyTemplate CREATE BY \_CopyTemplateTable
+      FIELDS ( TemplateName TemplateItemNo FilterAttrName FilterHigh FilterLow FilterOption ) WITH new_template_t.
+    ENDIF.
   ENDMETHOD.
   METHOD GET_GLOBAL_AUTHORIZATIONS.
   mbc_cp_api=>rap_bc_api( )->get_global_authorizations(
